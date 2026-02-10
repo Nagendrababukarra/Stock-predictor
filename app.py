@@ -44,7 +44,6 @@ ma_50_days = data.Close.rolling(50).mean()
 fig1 = plt.figure(figsize=(8,6))
 plt.plot(ma_50_days, 'r')
 plt.plot(data.Close, 'g')
-plt.show()
 st.pyplot(fig1)
 
 st.subheader('Price vs MA50 vs MA100')
@@ -53,7 +52,6 @@ fig2 = plt.figure(figsize=(8,6))
 plt.plot(ma_50_days, 'r')
 plt.plot(ma_100_days, 'b')
 plt.plot(data.Close, 'g')
-plt.show()
 st.pyplot(fig2)
 
 st.subheader('Price vs MA100 vs MA200')
@@ -62,7 +60,6 @@ fig3 = plt.figure(figsize=(8,6))
 plt.plot(ma_100_days, 'r')
 plt.plot(ma_200_days, 'b')
 plt.plot(data.Close, 'g')
-plt.show()
 st.pyplot(fig3)
 
 x = []
@@ -87,7 +84,6 @@ plt.plot(predict, 'r', label='Original Price')
 plt.plot(y, 'g', label = 'Predicted Price')
 plt.xlabel('Time')
 plt.ylabel('Price')
-plt.show()
 st.pyplot(fig4)
 
 
