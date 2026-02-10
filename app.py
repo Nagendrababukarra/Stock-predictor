@@ -75,10 +75,8 @@ x,y = np.array(x), np.array(y)
 
 predict = model.predict(x)
 
-scale = 1/scaler.scale_
+# No inverse scaling for deployed version
 
-predict = predict * scale
-y = y * scale
 
 st.subheader('Original Price vs Predicted Price')
 fig4 = plt.figure(figsize=(8,6))
