@@ -12,7 +12,9 @@ model = load_model("Stock Predictions Model.keras")
 st.header('Stock Market Predictor')
 
 
-stock =st.text_input('Enter Stock Symnbol', 'GOOG')
+stock = "GOOG"
+st.info("This AI model is trained specifically for Google (GOOG) stock.")
+
 from datetime import datetime
 end = datetime.now()
 start = datetime(end.year-20, end.month, end.day)
