@@ -12,7 +12,9 @@ model = load_model("Stock Predictions Model.keras")
 st.header('Stock Market Predictor')
 
 
-stock =st.text_input('Enter Stock Symnbol', 'GOOG')
+stock = "TSLA"
+st.info("Model demo using Tesla (TSLA) data")
+
 
 from datetime import datetime
 end = datetime.now()
@@ -33,11 +35,14 @@ data_test = pd.DataFrame(data.Close[int(len(data)*0.80): len(data)])
 from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler(feature_range=(0,1))
 
-pas_100_days = data_train.tail(100)
-data_test = pd.concat([pas_100_days, data_test], ignore_index=True)
+# Fit scaler on FULL close price (stable scaling)
+scaler.fit(pd.DataFrame(data.Close))
 
-scaler.fit(data_train)           
+# Prepare test data
+past_100_days = data_train.tail(100)
+data_test = pd.concat([past_100_days, data_test], ignore_index=True)
 data_test_scale = scaler.transform(data_test)
+
 
 
 st.subheader('Price vs MA50')
@@ -75,13 +80,15 @@ x,y = np.array(x), np.array(y)
 predict = model.predict(x)
 
 
-st.subheader('Original Price vs Predicted Price')
+st.subheader('Actual vs Predicted (Scaled)')
 fig4 = plt.figure(figsize=(8,6))
-plt.plot(predict, 'r', label='Original Price')
-plt.plot(y, 'g', label = 'Predicted Price')
+plt.plot(y, 'g', label='Actual (scaled)')
+plt.plot(predict, 'r', label='Predicted (scaled)')
 plt.xlabel('Time')
 plt.ylabel('Scaled Price')
+plt.legend()
 st.pyplot(fig4)
+
 
 
 
