@@ -18,6 +18,10 @@ end = datetime.now()
 start = datetime(end.year-20, end.month, end.day)
 
 data = yf.download(stock, start ,end)
+if data.empty:
+    st.error("Failed to fetch stock data. Please enter a valid stock symbol.")
+    st.stop()
+
 
 st.subheader('Stock Data')
 st.write(data)
