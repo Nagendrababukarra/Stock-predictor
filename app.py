@@ -37,8 +37,8 @@ scaler = MinMaxScaler(feature_range=(0,1))
 pas_100_days = data_train.tail(100)
 data_test = pd.concat([pas_100_days, data_test], ignore_index=True)
 
-scaler.fit(data_train)               # <-- ADDED
-data_test_scale = scaler.transform(data_test)   # <-- CHANGED
+scaler.fit(data_train)           
+data_test_scale = scaler.transform(data_test)
 
 
 st.subheader('Price vs MA50')
@@ -89,19 +89,6 @@ plt.ylabel('Price')
 st.pyplot(fig4)
 
 
-# Tomorrow Price Prediction
-
-
-st.subheader("Tomorrow Price Prediction")
-last_100_days = data.Close.tail(100).values
-last_100_scaled = scaler.transform(last_100_days.reshape(-1,1))
-x_input = np.reshape(last_100_scaled, (1, 100, 1))
-
-tomorrow_price = model.predict(x_input)
-
-tomorrow_price = scaler.inverse_transform(tomorrow_price)
-
-st.success(f"Predicted Tomorrow Closing Price: ${float(tomorrow_price[0][0]):.2f}")
 
 
 
