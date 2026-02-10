@@ -12,8 +12,8 @@ model = load_model("Stock Predictions Model.keras")
 st.header('Stock Market Predictor')
 
 
-stock = "TSLA"
-st.info("Model demo using Tesla (TSLA) data")
+stock = st.text_input('Enter Stock Symbol', 'GOOG')
+
 
 
 from datetime import datetime
