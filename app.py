@@ -80,10 +80,10 @@ x,y = np.array(x), np.array(y)
 predict = model.predict(x)
 
 
-st.subheader('Actual vs Predicted (Scaled)')
+st.subheader('orginal vs Predicted price')
 fig4 = plt.figure(figsize=(8,6))
-plt.plot(y, 'g', label='Actual (scaled)')
-plt.plot(predict, 'r', label='Predicted (scaled)')
+plt.plot(y, 'g', label='orginal')
+plt.plot(predict, 'r', label='Predicted')
 plt.xlabel('Time')
 plt.ylabel('Scaled Price')
 plt.legend()
